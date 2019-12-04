@@ -1,0 +1,45 @@
+{
+  "name": "open-music-lab",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --watch",
+    "build": "ng build",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~8.2.14",
+    "@angular/common": "~8.2.14",
+    "@angular/compiler": "~8.2.14",
+    "@angular/core": "~8.2.14",
+    "@angular/forms": "~8.2.14",
+    "@angular/platform-browser": "~8.2.14",
+    "@angular/platform-browser-dynamic": "~8.2.14",
+    "@angular/router": "~8.2.14",
+    "@tonejs/ui": "0.0.9",
+    "angular2gridster": "^8.1.2",
+    "golden-layout": "^1.5.9",
+    "jquery": "^3.4.1",
+    "jsplumb": "^2.12.6",
+    "nexusui": "^2.0.10",
+    "ngx-golden-layout": "0.0.32",
+    "rxjs": "~6.4.0",
+    "tone": "^13.8.25",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.9.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.803.19",
+    "@angular/cli": "~8.3.19",
+    "@angular/compiler-cli": "~8.2.14",
+    "@angular/language-service": "~8.2.14",
+    "@types/jquery": "^3.3.31",
+    "@types/node": "~8.9.4",
+    "@types/tone": "git://github.com/Tonejs/TypeScript.git",
+    "protractor": "~5.4.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.15.0",
+    "typescript": "~3.5.3"
+  }
+}

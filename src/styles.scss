@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+body, html {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.gridster-item-inner {
+  background: transparent;
+  margin: var(--nexus-component-spacing);
+  height: calc(100% - var(--nexus-component-spacing));
+}
+
+
+// Fixes for nexus components
+// TODO: Have a global sheet for nexus components
+.nexus-RadioButton div span {
+  display: inline-block;
+}

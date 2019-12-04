@@ -1,0 +1,20 @@
+<div class="rack">
+  <ngx-gridster [options]="gridsterOptions" [draggableOptions]="{ handlerClass: 'nexus-header' }">
+    <ngx-gridster-item
+      (change)="itemChanged($event, nexusComponent)"
+      *ngFor="let nexusComponent of nexusComponents"
+      [(x)]="nexusComponent.x"
+      [(y)]="nexusComponent.y"
+      [(w)]="nexusComponent.width"
+      [(h)]="nexusComponent.height">
+      <div class="nexus">
+        <div class="nexus-header">{{ nexusComponent.name }}</div>
+        <div
+          class="nexus-content"
+          [nexusComponent]="nexusComponent"
+          (onNexusComponentEvent)="handleNexusComponentEvent($event, nexusComponent)">
+      </div>
+      </div>
+    </ngx-gridster-item>
+  </ngx-gridster>
+</div>
