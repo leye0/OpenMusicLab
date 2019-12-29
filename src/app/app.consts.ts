@@ -1,2 +1,2 @@
-export const Nexus_Component_Padding: number = 4;
-export const Nexus_Header_Height: number = 24;
+export const Equipment_Grid_Padding: number = 4;
+export const Equipment_Header_Height: number = 24;

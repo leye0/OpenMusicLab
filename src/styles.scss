@@ -8,8 +8,8 @@ body, html {
 
 .gridster-item-inner {
   background: transparent;
-  margin: var(--nexus-component-spacing);
-  height: calc(100% - var(--nexus-component-spacing));
+  margin: var(--equipment-grid-spacing);
+  height: calc(100% - var(--equipment-grid-spacing));
 }
 
 
