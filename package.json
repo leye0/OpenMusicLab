@@ -22,7 +22,7 @@
     "golden-layout": "^1.5.9",
     "jquery": "^3.4.1",
     "jsplumb": "^2.12.6",
-    "nexusui": "^2.0.10",
+    "nexusui": "^2.1.6",
     "ngx-golden-layout": "0.0.32",
     "rxjs": "~6.4.0",
     "tone": "^13.8.25",
