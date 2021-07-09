@@ -24,7 +24,7 @@
     "jsplumb": "^2.12.6",
     "nexusui": "^2.0.10",
     "ngx-golden-layout": "0.0.32",
-    "rxjs": "~6.4.0",
+    "rxjs": "~6.6.7",
     "tone": "^13.8.25",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
