@@ -13,16 +13,16 @@ export const headerHeight: number = Equipment_Header_Height;
 })
 export class RackComponent implements AfterViewInit {
   // POC TONE JS:
-  envelope: {x:number, y:number}[] = [];
+  envelope: { x: number, y: number }[] = [];
   freeverb: Tone.Freeverb = new Tone.Freeverb().toMaster();
   synth: Tone.PolySynth = new Tone.PolySynth(<Tone.PolySynthOptions>{
     oscillator: { type: 'sine' },
     envelope: {
-      attack : 0.4,
-      decay : 0.2,
-      sustain : 0.5,
-      release : 1,
-      releaseCurve : 'linear'
+      attack: 0.4,
+      decay: 0.2,
+      sustain: 0.5,
+      release: 1,
+      releaseCurve: 'linear'
     }
   }).connect(this.freeverb);
 
@@ -34,10 +34,10 @@ export class RackComponent implements AfterViewInit {
     //   equipmentType: EquipmentType.ToneJsUI,
     //   configuration: {
     //     attack : 0.4,
-		// 		decay : 0.2,
-		// 		sustain : 0.5,
-		// 		release : 1,
-		// 		releaseCurve : 'linear'
+    // 		decay : 0.2,
+    // 		sustain : 0.5,
+    // 		release : 1,
+    // 		releaseCurve : 'linear'
     //   },
     //   height: 5,
     //   width: 8,
@@ -70,7 +70,7 @@ export class RackComponent implements AfterViewInit {
       height: 4,
       width: 4,
       uid: 't-ui-freeverb'
-    }, 
+    },
     // {
     //   name: 'Piano',
     //   events: ['change'],
@@ -100,8 +100,8 @@ export class RackComponent implements AfterViewInit {
     //   uid: 'seq'
     // },
     { name: 'Multislider', events: ['change'], uid: 'Multislider', width: 3, height: 1, equipmentType: EquipmentType.Nexus },
-    { name: 'Envelope', events: ['change'], uid: 'Envelope', width: 3, height: 1, context: { noNewPoints: false }, equipmentType: EquipmentType.Nexus },
-    { name: 'Pan', events: ['change'], uid: 'Pan', context: {}, maxWidth: 128, maxHeight: 32, width: 2, height: 1, equipmentType: EquipmentType.Nexus  },
+    { name: 'Envelope', events: ['change'], uid: 'Envelope', width: 3, height: 1, context: { noNewPoints: false }, equipmentType: EquipmentType.Nexus },
+    { name: 'Pan', events: ['change'], uid: 'Pan', context: {}, maxWidth: 128, maxHeight: 32, width: 2, height: 1, equipmentType: EquipmentType.Nexus },
     { name: 'Pan2D', events: ['change'], uid: 'Pan2D', equipmentType: EquipmentType.Nexus },
     { name: 'Meter', events: ['change'], uid: 'Meter', equipmentType: EquipmentType.Nexus },
     { name: 'Toggle', events: ['change'], uid: 'Toggle', maxWidth: 128, maxHeight: 32, equipmentType: EquipmentType.Nexus },
@@ -109,13 +109,13 @@ export class RackComponent implements AfterViewInit {
     { name: 'Oscilloscope', events: ['change'], uid: 'Osc', equipmentType: EquipmentType.Nexus },
     { name: 'Spectrogram', events: ['change'], uid: 'spec', equipmentType: EquipmentType.Nexus },
     { name: 'Select', events: ['change'], uid: 'Select', equipmentType: EquipmentType.Nexus },
-    { name: 'RadioButton', events: ['change'], uid: 'rad', maxHeight: 32, width: 3, height: 1, equipmentType: EquipmentType.Nexus  },
+    { name: 'RadioButton', events: ['change'], uid: 'rad', maxHeight: 32, width: 3, height: 1, equipmentType: EquipmentType.Nexus },
     { name: 'Position', events: ['change'], uid: 'pos', equipmentType: EquipmentType.Nexus },
     { name: 'Number', events: ['change'], uid: 'num', maxWidth: 128, maxHeight: 32, equipmentType: EquipmentType.Nexus },
     { name: 'TextButton', events: ['change'], uid: 'tbut', context: { text: 'TEXT' }, equipmentType: EquipmentType.Nexus },
   ];
 
-  gridsterOptions = <IGridsterOptions> {
+  gridsterOptions = <IGridsterOptions>{
     lanes: 16, // how many lines (grid cells) dashboard has
     direction: 'vertical', // items floating direction: vertical/horizontal/none
     floating: false, // default=true - prevents items to float according to the direction (gravity)
@@ -124,34 +124,25 @@ export class RackComponent implements AfterViewInit {
     useCSSTransforms: true, // Uses CSS3 translate() instead of position top/left - significant performance boost.
   };
 
-  itemChanged($event: any, equipment: Equipment, r: boolean = true): void {
-    // console.log('CHANGE');
-    // console.dir(equipment.nativeInstance);
-    try {
-      // Resize equipment ui component to grid item size
-      // TODO: Find the proper element
-      // const width = $event.item.itemComponent.$element.querySelector('.gridster-item-inner').clientWidth;
-      // const height = $event.item.itemComponent.$element.querySelector('.gridster-item-inner').clientHeight;
-
-      // If Nexus instrument
-      if (equipment.equipmentType === EquipmentType.Nexus) {
-        let width = $event.item.itemComponent.$element.clientWidth;
-        let height = $event.item.itemComponent.$element.clientHeight;
-        width = Math.min(width, (equipment.maxWidth + (padding * 2) || 100000));
-        height = Math.min(height, (equipment.maxHeight + (padding * 2 + headerHeight) || 100000));
-        equipment.nativeInstance.resize(width - (padding * 2), height - (padding * 2) - headerHeight); // TODO: If const, use const.
-        if (r) {
-          setTimeout(() => this.itemChanged($event, equipment, false)); // TODO. There's an "Apply-twice"-type of bug here. Otherwise the resizing is not applied until we move the widget again, and not apply vertically.
+  itemChanged($event: any, equipment: Equipment): void {
+    setTimeout(() => {
+      try {
+        // If Nexus instrument
+        if (equipment.equipmentType === EquipmentType.Nexus) {
+          let width = $event.item.itemComponent.$element.clientWidth;
+          let height = $event.item.itemComponent.$element.clientHeight;
+          width = Math.min(width, (equipment.maxWidth + (padding * 2) || 100000));
+          height = Math.min(height, (equipment.maxHeight + (padding * 2 + headerHeight) || 100000));
+          equipment.nativeInstance.resize(width - (padding * 2), height - (padding * 2) - headerHeight);
         }
+      } catch (error) {
+        console.debug(error);
       }
-      
-    } catch {
-      // dunno duncare
-    }
+    });
   }
 
   handleEquipmentEvent($event: any, equipment: Equipment): void {
-    // console.log($event);
+    console.log($event);
 
     // if (equipment.name === 'Piano') {
     //   if ($event.state) {
@@ -164,9 +155,6 @@ export class RackComponent implements AfterViewInit {
     // The nexus envelop is not so appropriate. But it has velocity.
     // The envelop used in the tonejs examples would be interesting,
     // but the envelop in the tonejs engine seem to not have velocity. (The y / amplitude / velocity / whatever)
-    // TODO: Check.
-    // TODO: Integrate tonejs demo widget. tone-rack, etc.
-    // OMG. https://github.com/Tonejs/ui
     // if (equipment.name === 'Envelope') {
     //   if ($event.length > 4) {
     //     this.synth.envelope.attack = $event[1].x - $event[0].x;
@@ -208,38 +196,38 @@ export interface GridItem {
 }
 
 export enum ToneJSUIEquipment {
-  ToneAmSynth = 'tone-am-synth', 
-  ToneAutoFilter = 'tone-auto-filter', 
-  ToneAutoPanner = 'tone-auto-panner', 
-  ToneButton = 'tone-button', 
-  ToneChebyshev = 'tone-chebyshev', 
-  ToneChorus = 'tone-chorus', 
-  ToneCompressor = 'tone-compressor', 
-  ToneDistortion = 'tone-distortion', 
-  ToneDuoSynth = 'tone-duo-synth', 
-  ToneEnvelope = 'tone-envelope', 
-  ToneFmSynth = 'tone-fm-synth', 
-  ToneFreeverb = 'tone-freeverb', 
-  ToneGrainPlayer = 'tone-grain-player', 
-  ToneKeyboard = 'tone-keyboard', 
-  ToneMembraneSynth = 'tone-membrane-synth', 
-  ToneMetalSynth = 'tone-metal-synth', 
-  ToneMonoSynth = 'tone-mono-synth', 
-  ToneNoiseSynth = 'tone-noise-synth', 
-  ToneNoise = 'tone-noise', 
-  ToneOscillator = 'tone-oscillator', 
-  TonePingPongDelay = 'tone-ping-pong-delay', 
-  TonePlayToggle = 'tone-play-toggle', 
-  TonePlayer = 'tone-player', 
-  ToneReverb = 'tone-reverb', 
-  ToneSampler = 'tone-sampler', 
-  ToneSelectAttribute = 'tone-select-attribute', 
-  ToneSelect = 'tone-select', 
-  ToneSlider2d = 'tone-slider-2d', 
-  ToneSlider = 'tone-slider', 
-  ToneStepSequencer = 'tone-step-sequencer', 
-  ToneSynth = 'tone-synth', 
-  ToneToggle = 'tone-toggle', 
-  ToneTremolo = 'tone-tremolo', 
-  ToneUnmute = 'tone-unmute'  
+  ToneAmSynth = 'tone-am-synth',
+  ToneAutoFilter = 'tone-auto-filter',
+  ToneAutoPanner = 'tone-auto-panner',
+  ToneButton = 'tone-button',
+  ToneChebyshev = 'tone-chebyshev',
+  ToneChorus = 'tone-chorus',
+  ToneCompressor = 'tone-compressor',
+  ToneDistortion = 'tone-distortion',
+  ToneDuoSynth = 'tone-duo-synth',
+  ToneEnvelope = 'tone-envelope',
+  ToneFmSynth = 'tone-fm-synth',
+  ToneFreeverb = 'tone-freeverb',
+  ToneGrainPlayer = 'tone-grain-player',
+  ToneKeyboard = 'tone-keyboard',
+  ToneMembraneSynth = 'tone-membrane-synth',
+  ToneMetalSynth = 'tone-metal-synth',
+  ToneMonoSynth = 'tone-mono-synth',
+  ToneNoiseSynth = 'tone-noise-synth',
+  ToneNoise = 'tone-noise',
+  ToneOscillator = 'tone-oscillator',
+  TonePingPongDelay = 'tone-ping-pong-delay',
+  TonePlayToggle = 'tone-play-toggle',
+  TonePlayer = 'tone-player',
+  ToneReverb = 'tone-reverb',
+  ToneSampler = 'tone-sampler',
+  ToneSelectAttribute = 'tone-select-attribute',
+  ToneSelect = 'tone-select',
+  ToneSlider2d = 'tone-slider-2d',
+  ToneSlider = 'tone-slider',
+  ToneStepSequencer = 'tone-step-sequencer',
+  ToneSynth = 'tone-synth',
+  ToneToggle = 'tone-toggle',
+  ToneTremolo = 'tone-tremolo',
+  ToneUnmute = 'tone-unmute'
 }

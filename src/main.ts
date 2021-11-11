@@ -5,8 +5,8 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import { Equipment_Grid_Padding, Equipment_Header_Height } from './app/app.consts';
 
-function getCssVariableValue (variableName: string) { getComputedStyle(document!.documentElement!).getPropertyValue(variableName); }
-function setCssVariableValue (variableName: string, value: string) { document!.documentElement!.style!.setProperty(variableName, value); }
+function getCssVariableValue (variableName: string) { getComputedStyle(document.documentElement).getPropertyValue(variableName); }
+function setCssVariableValue (variableName: string, value: string) { document.documentElement.style.setProperty(variableName, value); }
 
 (function a () {
   setCssVariableValue('--equipment-grid-spacing', `${Equipment_Grid_Padding}px`);

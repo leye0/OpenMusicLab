@@ -1,29 +1,21 @@
 <div class="rack">
-  <ngx-gridster [options]="gridsterOptions" [draggableOptions]="{ handlerClass: 'equipment-header' }">
+  <ngx-gridster [options]="gridsterOptions" [draggableOptions]="{ handlerClass: 'equipment--header' }">
     <ngx-gridster-item
       (change)="itemChanged($event, equipment)"
       *ngFor="let equipment of equipments"
-      [(x)]="equipment.x"
-      [(y)]="equipment.y"
-      [(w)]="equipment.width"
-      [(h)]="equipment.height">
-      <ng-container *ngIf="equipment.equipmentType===0 && equipment">
-        <div class="equipment">
-          <div class="equipment-header">{{equipment.name }}</div>
-          <div
-            class="equipment-content"
-            [nexusComponent]="equipment"
-            (onEquipmentEvent)="handleEquipmentEvent($event, equipment)">
-        </div>
-       </div>
-      </ng-container>
-      <ng-container *ngIf="equipment.equipmentType===1 && equipment">
+      [x]="equipment.x"
+      [y]="equipment.y"
+      [w]="equipment.width"
+      [h]="equipment.height">
+      <div class="equipment">
+        <div class="equipment--header">{{ equipment.name }}</div>
         <div
-          (onEquipmentEvent)="handleEquipmentEvent($event, equipment)"
-          [toneJsUi]="equipment">
-        
+          class="equipment--content"
+          [nexusComponent]="equipment?.equipmentType === 0 && equipment"
+          [toneJsUi]="equipment?.equipmentType === 1 && equipment"
+          (onEquipmentEvent)="handleEquipmentEvent($event, equipment)">
         </div>
-      </ng-container>
+      </div>
     </ngx-gridster-item>
   </ngx-gridster>
 </div>
