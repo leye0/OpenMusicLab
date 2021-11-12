@@ -26,7 +26,7 @@
     "ngx-golden-layout": "0.0.32",
     "rxjs": "~6.6.7",
     "tone": "^13.8.34",
-    "tslib": "^1.14.1",
+    "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "@types/jquery": "^3.5.8",
     "@types/node": "^12.11.1",
     "@types/tone": "git://github.com/Tonejs/TypeScript.git",
-    "protractor": "^5.4.4",
+    "protractor": "~7.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.8"
