@@ -20,7 +20,7 @@
     "@tonejs/ui": "^0.0.9",
     "angular2gridster": "^8.1.2",
     "golden-layout": "^1.5.9",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsplumb": "^2.12.6",
     "nexusui": "^2.0.10",
     "ngx-golden-layout": "0.0.32",
